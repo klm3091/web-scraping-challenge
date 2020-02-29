@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body class="text-white" style="background-color:#202020;">
+    <div class="container">
+
+        <!-- Jumbotron -->
+        <div class="jumbotron text-center" style="background-color:#202020">
+            <h1 class="display-4">Mission to Mars</h1>
+            <a class="btn btn-lg text-white" style="background-color:#44719b;" href="/scrape" role="button">Scrape New
+                Data</a>
+        </div>
+
+        <!-- News Section -->
+        <div class="container">
+            <h3>Latest Mars News</h3>
+            <h6 style="color: #44719b" {{ mars_info.news_title | safe}}></h6>
+            <p>{{ mars_info.mars_news | safe}}</p>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <!-- Left Image-->
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <h3>Featured Mars Image</h3>
+                    <img src="{{ mars_info.featured_image_url }}" style="max-width:100%; max-height: auto;" alt="Mars Featured Image">
+                </div>
+
+                <!-- Weather Card -->
+                <div class="col-lg-4 col-md-4 col-sm-12">
+
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body text-white bg-dark">
+                            <h6 class="card-title">Current Weather on Mars</h6>
+                            <p class="card-text">{{ mars_info.weather_tweet }}</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Table -->
+                    <br>
+                    <h3>Mars Facts</h3>
+                    <div style="max-width: 450px; max-height: 150px; font-size: 15px; margin-bottom: 65px;">
+                        {{ mars_info.mars_facts|safe}}
+                    </div>
+                </div> <!-- col4 -->
+            </div><!-- Row -->
+        </div><!-- Container -->
+
+        <!-- Cards -->
+        <h3 style="padding-top: 50px; margin-top: 100px; text-align: center;">Mars Hemispheres</h3>
+        <div class="card-deck">
+            <hr>
+            <div class="col-md-12">
+                <div class="row">
+                    {% for item in mars_info.mars_images %}
+                    <div class="col-md-6">
+                        <div class="card text-white bg-dark" style="margin: 30px;">
+                            <img class="card-img-top" src="{{ item.img_url }}" />
+                            <div class="card-body">
+                                <p class="card-text">{{ item.title }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div><!-- Close main container -->
+
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+</body>
+
+</html>
